@@ -12,8 +12,8 @@ sudo touch /etc/nginx/conf.d/load-balancing.conf
 
 sudo cat <<EOF | sudo tee /etc/nginx/conf.d/load-balancing.conf
 upstream nginx {
-    server 192.168.3.100:3306;
-    server 192.168.3.101:3306;
+    server 192.168.4.100:3306;
+    server 192.168.4.101:3306;
 }
 
 server {

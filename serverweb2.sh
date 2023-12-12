@@ -6,7 +6,7 @@ echo "Instalando cliente NFS"
 sudo apt install -y nfs-common
 echo "Creando carpetas y montando."
 sudo mkdir -p /var/nfs/general
-sudo mount 192.168.2.200:/var/nfs/general /var/nfs/general
+sudo mount 192.168.3.200:/var/nfs/general /var/nfs/general
 
 #!/bin/bash
 
@@ -35,7 +35,7 @@ server {
 
         location ~ \.php$ {
                 include snippets/fastcgi-php.conf;
-                fastcgi_pass 192.168.2.200:9000;
+                fastcgi_pass 192.168.3.200:9000;
         }
         location ~ /\.ht {
                 deny all;

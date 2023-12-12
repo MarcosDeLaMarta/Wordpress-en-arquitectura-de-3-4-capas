@@ -14,8 +14,8 @@ sudo touch /etc/nginx/conf.d/load-balancing.conf
 # Añade la configuración upstream y del servidor al nuevo archivo
 sudo cat <<EOF | sudo tee /etc/nginx/conf.d/load-balancing.conf
 upstream nginx {
-    server 192.168.1.100;
-    server 192.168.1.101;
+    server 192.168.2.100;
+    server 192.168.2.101;
 }
 
 server {

@@ -7,8 +7,8 @@ sudo chown nobody:nogroup /var/nfs/general
 echo "Creando archivo configuracion"
 sudo touch /etc/exports
 
-/var/nfs/general    192.168.2.100(rw,sync,no_subtree_check)
-/home               192.168.2.101(rw,sync,no_root_squash,no_subtree_check)
+/var/nfs/general    192.168.3.100(rw,sync,no_subtree_check)
+/home               192.168.3.101(rw,sync,no_root_squash,no_subtree_check)
 
 echo "reiniciando servicio"
 sudo systemctl restart nfs-kernel-server
@@ -16,7 +16,7 @@ echo "Instalando php."
 sudo apt install -y php-fpm
 sudo apt install -y php-mysql
 
-echo "listen = 192.168.2.200:9000" | sudo tee /etc/php/7.3/fpm/pool.d/www.conf > /dev/null
+echo "listen = 192.168.3.200:9000" | sudo tee /etc/php/7.3/fpm/pool.d/www.conf > /dev/null
 
 echo "Instalando wordpress."
 sudo wget https://wordpress.org/latest.tar.gz
@@ -37,7 +37,7 @@ declare -A replacements=(
     ["database_name_here"]="wp_db"
     ["username_here"]="wp_user"
     ["password_here"]="1234"
-    ["localhost"]="192.168.2.201"
+    ["localhost"]="192.168.3.201"
 )
 
 for key in "${!replacements[@]}"; do
