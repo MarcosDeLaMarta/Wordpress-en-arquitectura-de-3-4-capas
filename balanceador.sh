@@ -1,17 +1,27 @@
 #!/bin/bash
 
-echo "Instalando nginx"
-sudo apt install -y nginx
+# Función para verificar el éxito de la última ejecución
+check_success() {
+    if [ $? -ne 0 ]; then
+        echo "Error: La última operación ha fallado. Verifica el script y vuelve a intentarlo."
+        exit 1
+    fi
+}
 
-echo "Inicia el servicio Nginx"
+echo "Instalando Nginx."
+sudo apt install -y nginx
+check_success
+
+echo "Iniciando el servicio Nginx."
 sudo systemctl start nginx
 sudo systemctl enable nginx
+check_success
 
-echo "Borrando archivo por defecto y creando uno nuevo"
+echo "Borrando el archivo por defecto y creando uno nuevo."
 sudo rm -rf /etc/nginx/sites-enabled/default
 sudo touch /etc/nginx/conf.d/load-balancing.conf
 
-# Añade la configuración upstream y del servidor al nuevo archivo
+# Añade la configuración upstream y del servidor al nuevo archivo.
 sudo cat <<EOF | sudo tee /etc/nginx/conf.d/load-balancing.conf
 upstream nginx {
     server 192.168.2.100;
@@ -32,7 +42,8 @@ server {
 }
 EOF
 
-# Reinicia Nginx para aplicar los cambios
+# Reinicia Nginx para aplicar los cambios.
 sudo systemctl restart nginx
+check_success
 
-echo "Configuración completada"
+echo "Configuración de load balancing completada con éxito."

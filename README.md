@@ -18,12 +18,6 @@ Para ello en elegido la sigueinte infrestructura:
     * Servidor NFS: 192.168.3.200
     * Servidor web 1: 192.168.3.100
     * Servidor web 2: 192.168.3.101
-    * ProxyMariaDB: 192.168.3.201
+    * Servidor de datos: 192.168.3.150
 <br/>
 <br/>
-
-* RED 3 : 192.168.4.0
-    * ProxyMariaDB: 192.168.4.200
-    * Servidor de datos 1: 192.168.4.100
-    * Servidor de datos 2: 192.168.4.101
-
