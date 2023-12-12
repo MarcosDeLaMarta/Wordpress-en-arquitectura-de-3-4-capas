@@ -20,13 +20,14 @@ wsrep_node_address=192.168.4.101
 "
 
 # Detener el servicio MariaDB
-sudo systemctl stop mariadb
+sudo systemctl stop mariadb.service
 
 # Guardar la configuración en el archivo galera.cnf
 echo "$galera_config" | sudo tee /etc/mysql/conf.d/galera.cnf > /dev/null
 
 # Iniciar el servicio MariaDB
-sudo systemctl start mariadb
+sudo systemctl start mariadb.service
+
 
 echo "Creando la base de datos."
 sudo mysql -u root -e "CREATE DATABASE wp_db;"

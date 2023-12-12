@@ -20,10 +20,11 @@ wsrep_node_address=192.168.4.100
 "
 
 # Detener el servicio MariaDB
-sudo systemctl stop mariadb
+sudo systemctl stop mariadb.service
 
 # Guardar la configuración en el archivo galera.cnf
 echo "$galera_config" | sudo tee /etc/mysql/conf.d/galera.cnf > /dev/null
 
 # Iniciar el servicio MariaDB
-sudo systemctl start mariadb
+sudo galera_new_cluster
+sudo systemctl start mariadb.service

@@ -16,7 +16,7 @@ echo "Instalando php."
 sudo apt install -y php-fpm
 sudo apt install -y php-mysql
 
-echo "listen = 192.168.3.200:9000" | sudo tee /etc/php/7.3/fpm/pool.d/www.conf > /dev/null
+sudo sed -i 's|listen = /run/php/php7.3-fpm.sock|listen = 192.168.2.200:9000|' /etc/php/7.3/fpm/pool.d/www.conf
 
 echo "Instalando wordpress."
 sudo wget https://wordpress.org/latest.tar.gz
@@ -26,7 +26,7 @@ sudo mv wordpress/* /var/nfs/general
 echo "Dando permisos"
 sudo chown -R www-data:www-data /var/nfs/general
 sudo chmod -R 755 /var/nfs/general
-
+sudo cp wp-config-sample.php wp-config.php
 echo "Cambiando la configuracion de config.php"
 config_file="/var/nfs/general/wp-config.php"
 
@@ -43,6 +43,9 @@ declare -A replacements=(
 for key in "${!replacements[@]}"; do
     sudo sed -i "s/define( '$key', .* );/define( '$key', '${replacements[$key]}' );/" "$config_file"
 done
+
+sudo chown -R www-data:www-data /var/nfs/general/
+sudo chmod -R 755 /var/nfs/cms
 
 echo "Reinicio del servicio"
 sudo systemctl restart php7.3-fpm
