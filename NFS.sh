@@ -7,11 +7,11 @@ sudo chown nobody:nogroup /var/nfs/general
 echo "Creando archivo configuracion"
 sudo touch /etc/exports
 
-/var/nfs/general    192.168.3.100(rw,sync,no_subtree_check)
-/home               192.168.3.101(rw,sync,no_root_squash,no_subtree_check)
+sudo echo "/var/nfs/cms     192.168.3.100(rw,sync,no_subtree_check) 192.168.3.101(rw,sync,no_subtree_check)">>/etc/exports
 
 echo "reiniciando servicio"
 sudo systemctl restart nfs-kernel-server
+
 echo "Instalando php."
 sudo apt install -y php-fpm
 sudo apt install -y php-mysql
