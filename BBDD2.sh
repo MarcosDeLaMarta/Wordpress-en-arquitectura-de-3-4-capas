@@ -17,7 +17,10 @@ echo "Configurando la base de datos."
 config_file="/etc/mysql/mariadb.conf.d/50-server.cnf"
 
 # Nueva configuración
-new_config="bind_address = 0.0.0.0"
+CONFIG_FILE="/etc/mysql/mariadb.conf.d/50-server.cnf"
+
+# Cambia la dirección de enlace a 0.0.0.0
+sudo sed -i 's/^bind-address.*$/bind-address = 0.0.0.0/' "$CONFIG_FILE"
 
 # Verifica si el archivo existe
 if [ -e "$config_file" ]; then

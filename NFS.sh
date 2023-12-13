@@ -44,18 +44,17 @@ check_success
 echo "Dando permisos."
 sudo chown -R www-data:www-data /var/nfs/general
 sudo chmod -R 755 /var/nfs/general
-sudo cp wp-config-sample.php wp-config.php
 check_success
 
 echo "Cambiando la configuración de wp-config.php"
 config_file="/var/nfs/general/wp-config.php"
 
-sudo cp /var/nfs/general/wp-config-sample.php "$config_file"
+sudo cp /var/nfs/general/wp-config-sample.php /var/nfs/general/wp-config.php
 
 declare -A replacements=(
     ["database_name_here"]="wp_db"
     ["username_here"]="wp_user"
-    ["password_here"]="tu_contrasena_secreta"
+    ["password_here"]="1234"
     ["localhost"]="192.168.3.150"
 )
 

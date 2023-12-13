@@ -35,7 +35,7 @@ server {
 
         location ~ \.php$ {
                 include snippets/fastcgi-php.conf;
-                fastcgi_pass 192.168.3.150:9000;
+                fastcgi_pass 192.168.3.200:9000;
         }
         location ~ /\.ht {
                 deny all;
@@ -52,5 +52,5 @@ sudo rm -f /etc/nginx/sites-enabled/default
 sudo ln -s "$wordpress_config_path" "/etc/nginx/sites-enabled/$wordpress_config"
 
 sudo systemctl restart nginx
-sudo apt-get install mariadb-client
+sudo apt-get install -y mariadb-client
 echo "Configuración de WordPress completada"
